@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios'; //importing axios library to fetch movies from database
 
+import { RegistrationView } from '../registration-view/registration-view';
 import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
@@ -36,6 +37,13 @@ export class MainView extends React.Component {
         });
     }
 
+    //When a user successfully registers
+    onRegistration(register) {
+        this.setState({
+            register,
+        });
+    }
+
     /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
     onLoggedIn(user) {
         this.setState({
@@ -44,13 +52,15 @@ export class MainView extends React.Component {
     }
 
     render() {
-        const { movies, selectedMovie, user } = this.state;
+        const { movies, selectedMovie, user, register } = this.state;
 
-        //if (selectedMovie) return <MovieView movie={selectedMovie} />; 
+        //if (selectedMovie) return <MovieView movie={selectedMovie} />;
+
+        if (!register) return (<RegistrationView onRegistration={(register) => this.onRegistration(register)} />);
 
         if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
 
-        if (movies.length === 0) return <div className="main-view" />; //<div className="main-view">The list is empty!</div>;
+        if (movies.length === 0) return <div className="main-view" />;
 
         return (
             <div className="main-view">
