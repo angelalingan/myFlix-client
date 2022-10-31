@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+import axios from 'axios'; //importing axios library to fetch movies from database
 
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
@@ -9,7 +9,7 @@ export class MainView extends React.Component {
     //added a movies state that will hold the list of movies
     constructor() {
         super();
-        this.setstate = {
+        this.state = {
             movies: [
                 /*
                 {
@@ -61,8 +61,10 @@ export class MainView extends React.Component {
                     Featured: false,
                 }
                 */
-            ]
-        }
+            ],
+            selectedMovie: null,
+            user: null
+        };
     }
 
     componentDidMount() {

@@ -27073,7 +27073,7 @@ parcelHelpers.export(exports, "MainView", ()=>MainView);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
-var _axios = require("axios");
+var _axios = require("axios"); //importing axios library to fetch movies from database
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _movieCard = require("../movie-card/movie-card");
 var _movieView = require("../movie-view/movie-view");
@@ -27081,8 +27081,10 @@ class MainView extends (0, _reactDefault.default).Component {
     //added a movies state that will hold the list of movies
     constructor(){
         super();
-        this.setstate = {
-            movies: []
+        this.state = {
+            movies: [],
+            selectedMovie: null,
+            user: null
         };
     }
     componentDidMount() {
@@ -27106,7 +27108,7 @@ class MainView extends (0, _reactDefault.default).Component {
             className: "main-view"
         }, void 0, false, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 91,
+            lineNumber: 93,
             columnNumber: 41
         }, this); //<div className="main-view">The list is empty!</div>;
         return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27118,7 +27120,7 @@ class MainView extends (0, _reactDefault.default).Component {
                 }
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 96,
+                lineNumber: 98,
                 columnNumber: 23
             }, this) : movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
                     movie: movie,
@@ -27127,12 +27129,12 @@ class MainView extends (0, _reactDefault.default).Component {
                     }
                 }, movie._id, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 98,
+                    lineNumber: 100,
                     columnNumber: 25
                 }, this))
         }, void 0, false, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 94,
+            lineNumber: 96,
             columnNumber: 13
         }, this);
     }
