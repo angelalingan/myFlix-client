@@ -1,0 +1,1 @@
+{"mappings":";;ACEA","sources":["src/components/movie-view/movie-view.scss","src/index.scss"],"sourcesContent":[null,"$color: steelblue;\r\n\r\n.my-flix {\r\n    color: $color;\r\n}"],"names":[],"version":3,"file":"index.5f1df611.css.map","sourceRoot":"/__parcel_source_root/"}

@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
+import './login-view.scss';
 
 export function LoginView(props) {
     const [username, setUsername] = useState('');
@@ -15,18 +21,68 @@ export function LoginView(props) {
 
 
     return (
-        <form>
-            <label>
-                Username:
-                <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
-            </label>
-            <label>
-                Password:
-                <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-            </label>
-            <button type="submit" onClick={handleSubmit}>Log In</button>
-            <button type="button">Register</button>
-        </form>
+        <div className='login-view'>
+            <Row>
+                <Col>
+                    <h2 className='display-3'>Login to myFlix</h2>
+                </Col>
+            </Row>
+
+            <Form className='login-form'>
+                <Form.Group controlId='formUsername'>
+                    <Row className='login-view__line'>
+                        <Col sm={0} md={3}></Col>
+                        <Col sm={12} md={2}>
+                            <Form.Label>Username:</Form.Label>
+                        </Col>
+                        <Col sm={12} md={4}>
+                            <Form.Control
+                                type='text'
+                                onChange={(e) => setUsername(e.target.value)}
+                            />
+                        </Col>
+                    </Row>
+                </Form.Group>
+
+                <Form.Group controlId='formPassword'>
+                    <Row className='login-view__line'>
+                        <Col sm={0} md={3}></Col>
+                        <Col sm={12} md={2}>
+                            <Form.Label>Password:</Form.Label>
+                        </Col>
+                        <Col sm={12} md={4}>
+                            <Form.Control
+                                type='text'
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </Col>
+                    </Row>
+                </Form.Group>
+
+                <Row className='login-view__line'>
+                    <Col md={8}></Col>
+                    <Col>
+                        <Button variant='primary' type='submit' onClick={handleSubmit}>
+                            Log in
+                        </Button>
+                    </Col>
+                </Row>
+            </Form>
+
+            <Row className='register-row'>
+                <Col md={3}>
+                    <p>Sign up for an account </p>
+                </Col>
+                <Col>
+                    <Button
+                        variant='secondary'
+                        type='submit'
+                    >
+                        Register
+                    </Button>
+                </Col>
+            </Row>
+        </div>
     );
 }
 
