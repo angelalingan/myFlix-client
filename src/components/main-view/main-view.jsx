@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios'; //importing axios library to fetch movies from database
 
+import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 
@@ -16,6 +17,7 @@ export class MainView extends React.Component {
         };
     }
 
+    /*When a movie is clicked, this function is invoked and updates the state of the `selectedMovie` *property to that movie*/
     componentDidMount() {
         axios.get('https://myflixdb-myfirstapi.herokuapp.com/movies')
             .then(response => {
@@ -34,10 +36,19 @@ export class MainView extends React.Component {
         });
     }
 
+    /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
+    onLoggedIn(user) {
+        this.setState({
+            user
+        });
+    }
+
     render() {
-        const { movies, selectedMovie } = this.state;
+        const { movies, selectedMovie, user } = this.state;
 
         //if (selectedMovie) return <MovieView movie={selectedMovie} />; 
+
+        if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
 
         if (movies.length === 0) return <div className="main-view" />; //<div className="main-view">The list is empty!</div>;
 
@@ -51,12 +62,6 @@ export class MainView extends React.Component {
                 }
             </div>
         );
-        return (
-            <div className="main-view">
-                <div>Titanic</div>
-                <div>Avatar</div>
-                <div>The Batman</div>
-            </div>
-        );
+
     }
 }
