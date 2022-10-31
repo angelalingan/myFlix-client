@@ -32600,17 +32600,6 @@ function RegistrationView(props) {
                 fileName: "src/components/registration-view/registration-view.jsx",
                 lineNumber: 38,
                 columnNumber: 13
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                type: "button",
-                onClick: ()=>{
-                    props.onBackClick(null);
-                },
-                children: "Return to Login Page"
-            }, void 0, false, {
-                fileName: "src/components/registration-view/registration-view.jsx",
-                lineNumber: 39,
-                columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
