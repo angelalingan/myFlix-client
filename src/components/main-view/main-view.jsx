@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
@@ -8,8 +9,9 @@ export class MainView extends React.Component {
     //added a movies state that will hold the list of movies
     constructor() {
         super();
-        this.state = {
+        this.setstate = {
             movies: [
+                /*
                 {
                     _id: "6348b82cba5d8d49f5421101",
                     Title: "Titanic",
@@ -58,8 +60,21 @@ export class MainView extends React.Component {
                     ImagePath: "https://m.media-amazon.com/images/M/MV5BMDdmMTBiNTYtMDIzNi00NGVlLWIzMDYtZTk3MTQ3NGQxZGEwXkEyXkFqcGdeQXVyMzMwOTU5MDk@._V1_.jpg",
                     Featured: false,
                 }
+                */
             ]
         }
+    }
+
+    componentDidMount() {
+        axios.get('https://myflixdb-myfirstapi.herokuapp.com/movies')
+            .then(response => {
+                this.setState({
+                    movies: response.data
+                });
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 
     setSelectedMovie(newSelectedMovie) {
@@ -71,7 +86,7 @@ export class MainView extends React.Component {
     render() {
         const { movies, selectedMovie } = this.state;
 
-        //if (selectedMovie) return <MovieView movie={selectedMovie} />;
+        //if (selectedMovie) return <MovieView movie={selectedMovie} />; 
 
         if (movies.length === 0) return <div className="main-view">The list is empty!</div>;
 
