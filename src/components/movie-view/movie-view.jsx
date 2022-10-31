@@ -2,13 +2,19 @@ import React from 'react';
 
 export class MovieView extends React.Component {
 
+    componentDidMount() {
+        document.addEventListener('keypress', event => {
+            console.log(event.key);
+        });
+    }
+
     render() {
         const { movie, onBackClick } = this.props;
 
         return (
             <div className="movie-view">
                 <div className="movie-poster">
-                    <img src={movie.ImagePath} width="300" height="400" />
+                    <img src={movie.ImagePath} width="350" height="500" />
                 </div>
                 <div className="movie-title">
                     <span className="label">Title: </span>
