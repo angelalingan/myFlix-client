@@ -28131,7 +28131,7 @@ class MainView extends (0, _reactDefault.default).Component {
             movies: [],
             selectedMovie: null,
             user: null,
-            registered: true
+            register: true
         };
     }
     /*When a movie is clicked, this function is invoked and updates the state of the `selectedMovie` *property to that movie*/ componentDidMount() {
@@ -28226,7 +28226,7 @@ class MainView extends (0, _reactDefault.default).Component {
             className: "main-view",
             children: [
                 selectedMovie ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
-                    className: "justify-content-md-center",
+                    className: "main-view justify-content-md-center",
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
                         md: 8,
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {

@@ -19,7 +19,7 @@ export class MainView extends React.Component {
             movies: [],
             selectedMovie: null,
             user: null,
-            registered: true,
+            register: true,
         };
     }
 
@@ -114,7 +114,7 @@ export class MainView extends React.Component {
             <div className="main-view">
                 {selectedMovie
                     ? (
-                        <Row className="justify-content-md-center">
+                        <Row className="main-view justify-content-md-center">
                             <Col md={8}>
                                 <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
                             </Col>
