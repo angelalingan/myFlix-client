@@ -49,14 +49,6 @@ export class MainView extends React.Component {
         });
     }
 
-    /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
-    /*onLoggedIn(user) {
-        this.setState({
-            user
-        });
-    }
-    */
-
     onLoggedIn(authData) {
         console.log(authData);
         this.setState({
@@ -94,40 +86,11 @@ export class MainView extends React.Component {
     render() {
         const { movies, selectedMovie, user, register } = this.state;
 
-        //if (selectedMovie) return <MovieView movie={selectedMovie} />;
-
         if (!register) return (<RegistrationView onRegistration={(register) => this.onRegistration(register)} />);
 
-        if (!user) return <Row>
-            <Col>
-                <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
-            </Col>
-        </Row>
-        if (movies.length === 0) return <div className="main-view" />;
-
         return (
-            /*
-            <div className="main-view">
-                {selectedMovie
-                    ? (
-                        <Row className="main-view justify-content-md-center">
-                            <Col md={8}>
-                                <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
-                            </Col>
-                        </Row>
-                    )
-                    : (
-                        <Row className="justify-content-md-center">
-                            {movies.map(movie => (
-                                <Col md={3} key={movie._id}>
-                                    <MovieCard movie={movie} onMovieClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
-                                </Col>
-                            ))}
-                        </Row>
-                    )
-                }
+            /*        
                 {<button onClick={() => { this.onLoggedOut() }}>Logout</button>}
-            </div>
             */
             <Router>
                 <Row className="main-view justify-content-md-center">
@@ -150,26 +113,34 @@ export class MainView extends React.Component {
                         </Col>
                     }} />
                     <Route path="/movies/:movieId" render={({ match, history }) => {
+                        if (!user) return <Col>
+                            <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+                        </Col>
+                        if (movies.length === 0) return <div className="main-view" />;
                         return <Col md={8}>
                             <MovieView movie={movies.find(m => m._id === match.params.movieId)} onBackClick={() => history.goBack()} />
                         </Col>
                     }} />
                     <Route path="/directors/:name" render={({ match, history }) => {
+                        if (!user) return <Col>
+                            <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+                        </Col>
                         if (movies.length === 0) return <div className="main-view" />;
                         return <Col md={8}>
                             <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director} onBackClick={() => history.goBack()} />
                         </Col>
                     }} />
                     <Route path="/genres/:name" render={({ match, history }) => {
+                        if (!user) return <Col>
+                            <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+                        </Col>
                         if (movies.length === 0) return <div className="main-view" />;
                         return <Col md={8}>
                             <GenreView genre={movies.find(m => m.Genre.Name === match.params.name).Genre} onBackClick={() => history.goBack()} />
                         </Col>
                     }} />
-
                 </Row>
             </Router>
         );
-
     }
 }
