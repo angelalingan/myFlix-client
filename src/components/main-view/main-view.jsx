@@ -35,16 +35,6 @@ export class MainView extends React.Component {
             this.getMovies(accessToken);
         }
     }
-    /*axios.get('https://myflixdb-myfirstapi.herokuapp.com/movies')
-        .then(response => {
-            this.setState({
-                movies: response.data
-            });
-        })
-        .catch(error => {
-            console.log(error);
-        });
-} */
 
     setSelectedMovie(newSelectedMovie) {
         this.setState({
