@@ -11,6 +11,8 @@ import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { GenreView } from '../genre-view/genre-view';
 import { DirectorView } from '../director-view/director-view';
+import { ProfileView } from "../profile-view/profile-view";
+import MyFlixNavbar from "../navbar/navbar";
 
 export class MainView extends React.Component {
 
@@ -92,6 +94,7 @@ export class MainView extends React.Component {
                 {<button onClick={() => { this.onLoggedOut() }}>Logout</button>}
             */
             <Router>
+                <MyFlixNavbar user={user} onLogOut={() => this.onLoggedOut()} />
                 <Row className="main-view justify-content-md-center">
                     <Route exact path="/" render={() => {
                         if (!user) return (
