@@ -94,10 +94,10 @@ export class MainView extends React.Component {
             <Router>
                 <Row className="main-view justify-content-md-center">
                     <Route exact path="/" render={() => {
-                        if (!user) return
-                        <Col>
-                            <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
-                        </Col>
+                        if (!user) return (
+                            <Col>
+                                <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+                            </Col>)
                         if (movies.length === 0) return <div className="main-view"></div>
                         return movies.map(m => (
                             <Col md={3} key={m._id}>
@@ -106,15 +106,17 @@ export class MainView extends React.Component {
                         ))
                     }} />
                     <Route path="/register" render={() => {
-                        if (user) return <Redirect to="/" />
+                        if (user) return
+                        <Redirect to="/" />
                         return <Col>
                             <RegistrationView />
                         </Col>
                     }} />
                     <Route path="/movies/:movieId" render={({ match, history }) => {
-                        if (!user) return <Col>
-                            <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
-                        </Col>
+                        if (!user) return (
+                            <Col>
+                                <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+                            </Col>)
                         if (movies.length === 0) return <div className="main-view" />;
                         return <Col md={8}>
                             <MovieView movie={movies.find(m => m._id === match.params.movieId)} onBackClick={() => history.goBack()} />
@@ -127,7 +129,8 @@ export class MainView extends React.Component {
                         return <ProfileView history={history} movies={movies} user={user === match.params.username} />
                     }} />
                     <Route path="/directors/:name" render={({ match, history }) => {
-                        if (!user) return <Col>
+                        if (!user) return
+                        <Col>
                             <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
                         </Col>
                         if (movies.length === 0) return <div className="main-view" />;
