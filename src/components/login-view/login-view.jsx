@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from "react-router-dom";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
@@ -119,10 +120,13 @@ export function LoginView(props) {
                 </Col>
                 <Col>
                     <Button
-                        variant='secondary'
+                        variant='tertiary'
                         type='submit'
                     >
-                        Register
+                        <Link to={"/register"}>
+                            {" "}
+                            <a>Register</a>
+                        </Link>
                     </Button>
                 </Col>
             </Row>
