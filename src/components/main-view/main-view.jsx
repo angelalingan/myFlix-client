@@ -84,15 +84,18 @@ export class MainView extends React.Component {
             });
     }
 
+    onRegistration(registered) {
+        this.setState({
+            registered,
+        });
+    }
+
     render() {
         const { movies, selectedMovie, user, register } = this.state;
 
         if (!register) return (<RegistrationView onRegistration={(register) => this.onRegistration(register)} />);
 
         return (
-            /*        
-                {<button onClick={() => { this.onLoggedOut() }}>Logout</button>}
-            */
             <Router>
                 <MyFlixNavbar user={user} onLogOut={() => this.onLoggedOut()} />
                 <Row className="main-view justify-content-md-center">
