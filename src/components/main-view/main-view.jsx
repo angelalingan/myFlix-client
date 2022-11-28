@@ -90,8 +90,54 @@ export class MainView extends React.Component {
         });
     }
 
+    handleFavorite = (movieId, action) => {
+        const { user, favoriteMovies } = this.state;
+        const accessToken = localStorage.getItem("token");
+        const username = user;
+        if (accessToken !== null && username !== null) {
+            // Add MovieID to Favorites (local state & webserver)
+            if (action === "add") {
+                this.setState({ favoriteMovies: [...favoriteMovies, movieId] });
+                axios
+                    .put(
+                        `https://myflixdb-myfirstapi.herokuapp.com/users/${username}/movies/${movieId}`,
+                        {},
+                        {
+                            headers: { Authorization: `Bearer ${accessToken}` },
+                        }
+                    )
+                    .then((res) => {
+                        console.log(`Movie added to ${username} Favorite movies`);
+                        alert(`Movie added to ${username} Favorite movies`);
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+
+                // Remove MovieID from Favorites (local state & webserver)
+            } else if (action === "remove") {
+                this.setState({
+                    favoriteMovies: favoriteMovies.filter((id) => id !== movieId),
+                });
+                axios
+                    .delete(
+                        `https://myflixdb-myfirstapi.herokuapp.com/users/${username}/favorites/${movieId}`,
+                        {
+                            headers: { Authorization: `Bearer ${accessToken}` },
+                        }
+                    )
+                    .then((res) => {
+                        console.log(`Movie removed from ${username} Favorite movies`);
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+            }
+        }
+    };
+
     render() {
-        const { movies, selectedMovie, user, register } = this.state;
+        const { movies, selectedMovie, user, register, favoriteMovies } = this.state;
 
         if (!register) return (<RegistrationView onRegistration={(register) => this.onRegistration(register)} />);
 
