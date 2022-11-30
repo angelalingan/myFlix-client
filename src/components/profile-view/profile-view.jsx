@@ -12,7 +12,7 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import { Figure } from "react-bootstrap";
 
-export default class ProfileView extends React.Component {
+export class ProfileView extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -198,75 +198,73 @@ export default class ProfileView extends React.Component {
                         <Card className="update-inputs">
                             <Card.Header>Update Profile</Card.Header>
                             <Card.Body>
-                                <Card.Text>
-                                    <Form
-                                        className="update-form"
-                                        onSubmit={(e) =>
-                                            this.editUser(
-                                                e,
-                                                this.Username,
-                                                this.Password,
-                                                this.Email,
-                                                this.Birthday
-                                            )
-                                        }
-                                    >
-                                        <Form.Group>
-                                            <Form.Label>Username</Form.Label>
-                                            <Form.Control
-                                                type="text"
-                                                name="Username"
-                                                placeholder="New Username"
-                                                onChange={(e) => this.setUsername(e.target.value)}
-                                                required
-                                            />
-                                        </Form.Group>
-                                        <Form.Group>
-                                            <Form.Label>Password</Form.Label>
-                                            <Form.Control
-                                                type="password"
-                                                name="Password"
-                                                placeholder="New Password"
-                                                onChange={(e) => this.setPassword(e.target.value)}
-                                                required
-                                            />
-                                        </Form.Group>
-                                        <Form.Group>
-                                            <Form.Label>Email</Form.Label>
-                                            <Form.Control
-                                                type="email"
-                                                name="Email"
-                                                placeholder="New Email"
-                                                onChange={(e) => this.setEmail(e.target.value)}
-                                                required
-                                            />
-                                        </Form.Group>
-                                        <Form.Group>
-                                            <Form.Label>Birthday</Form.Label>
-                                            <Form.Control
-                                                type="date"
-                                                name="Birthday"
-                                                onChange={(e) => this.setBirthday(e.target.value)}
-                                            />
-                                        </Form.Group>
-                                        <Form.Group>
-                                            <Button
-                                                variant="warning"
-                                                type="submit"
-                                                onClick={(e) => this.editUser(e)}
-                                            >
-                                                Update User
-                                            </Button>
-                                            <Button
-                                                className="delete-button"
-                                                variant="danger"
-                                                onClick={() => this.onDeleteUser()}
-                                            >
-                                                Delete User
-                                            </Button>
-                                        </Form.Group>
-                                    </Form>
-                                </Card.Text>
+                                <Form
+                                    className="update-form"
+                                    onSubmit={(e) =>
+                                        this.editUser(
+                                            e,
+                                            this.Username,
+                                            this.Password,
+                                            this.Email,
+                                            this.Birthday
+                                        )
+                                    }
+                                >
+                                    <Form.Group>
+                                        <Form.Label>Username</Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            name="Username"
+                                            placeholder="New Username"
+                                            onChange={(e) => this.setUsername(e.target.value)}
+                                            required
+                                        />
+                                    </Form.Group>
+                                    <Form.Group>
+                                        <Form.Label>Password</Form.Label>
+                                        <Form.Control
+                                            type="password"
+                                            name="Password"
+                                            placeholder="New Password"
+                                            onChange={(e) => this.setPassword(e.target.value)}
+                                            required
+                                        />
+                                    </Form.Group>
+                                    <Form.Group>
+                                        <Form.Label>Email</Form.Label>
+                                        <Form.Control
+                                            type="email"
+                                            name="Email"
+                                            placeholder="New Email"
+                                            onChange={(e) => this.setEmail(e.target.value)}
+                                            required
+                                        />
+                                    </Form.Group>
+                                    <Form.Group>
+                                        <Form.Label>Birthday</Form.Label>
+                                        <Form.Control
+                                            type="date"
+                                            name="Birthday"
+                                            onChange={(e) => this.setBirthday(e.target.value)}
+                                        />
+                                    </Form.Group>
+                                    <Form.Group>
+                                        <Button
+                                            variant="warning"
+                                            type="submit"
+                                            onClick={(e) => this.editUser(e)}
+                                        >
+                                            Update User
+                                        </Button>
+                                        <Button
+                                            className="delete-button"
+                                            variant="danger"
+                                            onClick={() => this.onDeleteUser()}
+                                        >
+                                            Delete User
+                                        </Button>
+                                    </Form.Group>
+                                </Form>
                             </Card.Body>
                         </Card>
                     </Col>
