@@ -14,7 +14,7 @@ export default function MyFlixNavBar({ user, onLogOut }) {
                 <Nav className="me-auto">
                     {user && (
                         <>
-                            <Nav.Link as={Link} to="/profile">
+                            <Nav.Link as={Link} to={`/users/${user}`}>
                                 Profile
                             </Nav.Link>
                             <Nav.Link as={Link} to="/" onClick={onLogOut}>
